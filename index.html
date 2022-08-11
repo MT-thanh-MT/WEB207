@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
+    <link href="css/login.css" rel="stylesheet">
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+        integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+        crossorigin="anonymous"></script>
+    <script src="node_modules/angular-cookies/angular-cookies.js"></script>
+    <title>Title</title>
+</head>
+
+<body ng-app="myApp">
+    <div>
+        <header class="row">
+            <div id="header-background">
+            </div>
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#!home">FPT Polytechnic</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Giới thiệu</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://caodang.fpt.edu.vn/lien-he#Ha-Noi">Liên hệ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Góp ý</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Hỏi đáp</a>
+                                </li>
+                            </ul>
+                            <ul class="d-flex navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{(student==null) ? "Tài khoản" : "Xin chào: " + student.fullname}}
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <div ng-show="student==null">
+                                            <li><a class="dropdown-item" href="#!registration">Đăng ký</a></li>
+                                            <li><a class="dropdown-item" href="#!login">Đăng nhập</a></li>
+                                            <li><a class="dropdown-item" href="#">Quên mật khẩu</a></li>
+                                        </div>
+
+                                        <div ng-hide="student==null">
+                                            <li><a class="dropdown-item" href="#!changePass">Đổi mật khẩu</a></li>
+                                            <li><a class="dropdown-item" href="#!updateAcc">Cập nhật thông tin</a></li>
+                                            <li><a ng-click="logoff()" class="dropdown-item" href="#">Đăng xuất</a></li>
+                                        </div>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+    </div>
+
+    <main ng-view>
+    </main>
+
+    <footer>
+        <div class="row p-5">
+            <div class="col-sm-4">
+                <p class="text-center"><img src="./images/logo-footer.png" alt=""></p>
+                <div class="clearfix wrapper-social" style="margin-top: 10px; display: flex;justify-content: center;">
+                    <div class="pull-left" style="margin-right: 15px;"><a href="https://www.facebook.com/thanh.risky"
+                            target="_blank" rel="noopener noreferrer"><img class="img-responsive lazyloaded"
+                                src="https://caodang.fpt.edu.vn/wp-content/themes/poly-2015/images/ico-fb-landing.png"
+                                data-ll-status="loaded"><noscript><img class="img-responsive"
+                                    src="https://caodang.fpt.edu.vn/wp-content/themes/poly-2015/images/xico-fb-landing.png.pagespeed.ic.7wvYx5wg-6.webp" /></noscript></a>
+                    </div>
+                    <div class="pull-left" style="margin-right: 15px;"><a
+                            href="https://www.youtube.com/channel/UCHXm-vzOfAuLucVBKDUfhvQ" target="_blank"
+                            rel="noopener noreferrer"><img class="img-responsive lazyloaded"
+                                src="https://caodang.fpt.edu.vn/wp-content/themes/poly-2015/images/ico-youtube-landing.png"
+                                data-ll-status="loaded"><noscript><img class="img-responsive"
+                                    src="https://caodang.fpt.edu.vn/wp-content/themes/poly-2015/images/xico-youtube-landing.png.pagespeed.ic.1X68wukCQj.webp" /></noscript>
+                        </a></div>
+                    <div class="pull-left" style="margin-right: 15px;"><a
+                            href="https://www.tiktok.com/@fptpolytechnic?lang=en" target="_blank"
+                            rel="noopener noreferrer"><img class="img-responsive lazyloaded"
+                                src="https://caodang.fpt.edu.vn/wp-content/uploads/icon-tiktok.png"
+                                data-ll-status="loaded"><noscript><img class="img-responsive"
+                                    src="https://caodang.fpt.edu.vn/wp-content/uploads/xicon-tiktok.png.pagespeed.ic.vlzCpD1E6j.webp" /></noscript>
+                        </a></div>
+                    <div class="pull-left"><a
+                            href="http://vi.wikipedia.org/wiki/Tr%C6%B0%E1%BB%9Dng_Cao_%C4%91%E1%BA%B3ng_Th%E1%BB%B1c_h%C3%A0nh_FPT"
+                            target="_blank" rel="noopener noreferrer"><img class="img-responsive lazyloaded"
+                                src="https://caodang.fpt.edu.vn/wp-content/themes/poly-2015/images/ico-wiki-landing.png"
+                                data-ll-status="loaded"><noscript><img class="img-responsive"
+                                    src="https://caodang.fpt.edu.vn/wp-content/themes/poly-2015/images/xico-wiki-landing.png.pagespeed.ic.aC7_ZAw9LQ.webp" /></noscript>
+                        </a></div>
+                </div>
+                <div class="phone d-flex justify-content-center " style="padding-top: 30px;">
+                    <div class="title">
+                        <p class="text-warning fs-3"><b> THÔNG TIN LIÊN HỆ</b></p>
+                        <p class="text-white fs-6">Điện Thoại : 0989898989</p>
+                        <p class="text-white fs-6">Email: caodang@fpt.edu.vn</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <h3 class="text-warning">HỆ THỐNG VĂN PHÒNG TUYỂN SINH</h3>
+                <div class="row">
+                    <div class="col-sm-6 pt-3">
+                        <div class="Hanoi text-white pb-3">
+                            <p class="fs-4"><u>Cơ sở Hà Nội</u></p>
+                            <p><i class="bi bi-pin-map-fill text-warning"></i> Văn phòng tuyển sinh: Toà nhà FPT
+                                Polytechnic
+                                , Phố Trịnh
+                                Văn Bô,
+                                phường Phương Canh, quận Nam Từ Liêm, TP Hà Nội</p>
+                            <p><i class="bi bi-telephone-inbound-fill text-warning"></i> 0989898989</p>
+                        </div>
+                        <div class="HaiPhong text-white">
+                            <p class="fs-4"><u>Cơ sở Hải Phòng</u></p>
+                            <p><i class="bi bi-pin-map-fill text-warning"></i> Văn phòng tuyển sinh: 271 Lê Thánh
+                                TÔng,
+                                phường Máy Chai,
+                                quận Ngô Quyền, TP Hải Phòng</p>
+                            <p><i class="bi bi-telephone-inbound-fill text-warning"></i> 0989898989</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 pt-3">
+                        <div class="HCM text-white pb-3">
+                            <p class="fs-4"><u>Cơ sở Hồ Chí Minh</u></p>
+                            <p><i class="bi bi-pin-map-fill text-warning"></i> Văn phòng tuyển sinh: 778/B1 Nguyễn
+                                Kiệm,
+                                phường 4, quận
+                                Phú Nhuận, TP Hồ Chí Minh</p>
+                            <p><i class="bi bi-telephone-inbound-fill text-warning"></i> 0989898989</p>
+                        </div>
+                        <div class="TayNguyen text-white">
+                            <p class="fs-4"><u>Cơ sở Tây Nguyên</u></p>
+                            <p><i class="bi bi-pin-map-fill text-warning"></i> Văn phòng tuyển sinh: Tổ dân phố 8,
+                                phường
+                                Tân An,
+                                TP.Buoom Ma Thuật, Đắc Lắk</p>
+                            <p><i class="bi bi-telephone-inbound-fill text-warning"></i> 0989898989</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/myapp/myapp.js"></script>
+    <script src="js/myapp/homeCtrl.js"></script>
+    <script src="js/myapp/loginCtrl.js"></script>
+    <script src="js/myapp/registerCtrl.js"></script>
+    <script src="js/myapp/updateaccountCtrl.js"></script>
+    <script src="js/myapp/changepasswordCtrl.js"></script>
+    <script src="js/myapp/testCtrl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

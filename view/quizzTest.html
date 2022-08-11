@@ -1,0 +1,46 @@
+<section class="container mt-4">
+    <div ng-show="isStart" class="text-center bg-light mt-4 mb-4 p-4">
+        <h1 class="mt-4"><i class="fas fa-book-open"></i> Bài thi thử môn: {{subject.Name}}</h1>
+        <p class="fs-3"><i class="fas fa-hourglass-half"></i> Thời gian: 15 phút</p>
+        <button ng-click="starQuizz()" class="btn btn-sub-info mb-4 mt-4"> <i class="fas fa-play-circle"></i> &ensp;  Bắt đầu </button>
+    </div>
+    <div ng-show="!isStart && (isFinish == false)" class="card test-card">
+        <div class="card-header">
+            <h1 class="card-title">
+                {{subject.Name}}
+            </h1>
+            <div class="test-timer"><p class="fs-2"> <i class="fab fa-algolia peach-gradient mr-3 z-depth-2"></i>&ensp;{{(timer-timer%60)/60}}:{{timer%60}}</p></div>
+        </div>
+        <div class="card-body">
+            <h6>
+                {{indexQ+1+'. '+questionsRandom[indexQ].Text}}
+            </h6>
+            <hr>
+            <form>
+                <fieldset ng-repeat="an in questionsRandom[indexQ].Answers" class="form-check mb-2">
+                    <input ng-model="elem[indexQ].answer" class="form-check-input" name="bgroup" type="radio" id="{{'an'+$index}}" value="{{an.Id}}" required>
+                    <label class="form-check-label" for="{{'an'+$index}}">{{an.Text}}</label>
+                </fieldset>
+                
+            </form>
+        </div>
+        <div class="card-footer">
+            <div class="text-center">
+                <button ng-disabled="indexQ <= 0" ng-click="prev()" class="btn btn-sub-info md-4"><i class="fas fa-chevron-circle-left"></i></button>
+                <button ng-disabled="indexQ >= questionsRandom.length-1" ng-click="next()" class="btn btn-sub-info ms-4"><i class="fas fa-chevron-circle-right"></i></button>
+            </div>
+            <div class="float-end">
+                <button ng-click="finish()" class="btn btn-sub-info md-4"><i class="fas fa-sign-out-alt"></i> Finish</button>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="isFinish" class="text-center bg-light mt-4 mb-4 p-4">
+        <h1 class="mt-4"><i class="fas fa-book-open"></i> Bài thi thử môn: {{subject.Name}}</h1>
+        <p class="fs-3"><i class="fas fa-hourglass-half"></i> Thời gian: 15 phút</p>
+        <p class="fs-3"><i class="fas fa-user-graduate"></i> Thí sinh: {{student.fullname}}</p>
+        <p class="fs-3"><i class="fas fa-file-spreadsheet"></i> Kết quả thi: {{testMark}}</p>
+        <p class="fs-3 {{(testMark >= 5)?'text-success':'text-danger'}}"><i class="fas fa-hourglass-half"></i> {{testMark >= 5 ? "PASS":"FAIL"}}</p>
+        <button ng-click="playAgain()" class="btn btn-sub-info mb-4 mt-4"> <i class="fas fa-play-circle"></i> &ensp;  Làm lại </button>
+    </div>
+</section>

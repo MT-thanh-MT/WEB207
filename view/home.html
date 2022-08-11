@@ -1,0 +1,68 @@
+<section class="container">
+    <div class="row">
+        <article class="col-sm-8 mt-4">
+            <div class="row text-center">
+                <!-- Jumbotron -->
+                <div class="p-5 text-center bg-image rounded-3" style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');height: 400px;">
+                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <div ng-show="student==null" class="text-white">
+                                <h1 class="mb-3">Trang thi trắc nghiệm trực tuyến</h1>
+                                <h6 class="mb-3">Để bắt đầu bài thi bạn vui lòng đăng nhập hoặc đăng kí.</h6>
+                                <a class="btn btn-outline-light btn-lg" href="#!login" role="button">Đăng Nhập</a>
+                                <a class="btn btn-outline-light btn-lg" href="#!registration" role="button">Đăng ký</a>
+                            </div>
+                            <div ng-hide="student==null" class="text-white">
+                                <h1 class="mb-3">Trang thi trắc nghiệm trực tuyến</h1>
+                                <h6 class="mb-3">Xin Chào {{student.fullname}}.</h6>
+                                <p>Giờ đây, bạn có thể chọn môn thi và bấm "Thi luôn" để làm bài test nhé.</p>
+                                <p>Chúc bạn đạt được kết quả tốt nhé!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Jumbotron -->
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 g-2 mb-4 mt-4">
+                <div ng-repeat="sub in list_subject| limitTo:4:cout" class="col">
+                    <div class="card text-center myCard-course">
+                        <div class="card-header">
+                            <img ng-src="./images/logos/{{sub.Logo}}" class="" alt="...">
+                        </div>
+                        <div class="card-footer ">
+                            <h6 class="card-text">{{sub.Name}}</h6>
+                            <button ng-click="checkLogin(sub.Id)" class="btn btn-sub-info">Thi luôn</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button ng-click="prev()" class="btn btn-sub-info md-4"><i
+                        class="fas fa-chevron-circle-left"></i></button>
+                <button ng-click="next()" class="btn btn-sub-info ms-4"><i
+                        class="fas fa-chevron-circle-right"></i></button>
+            </div>
+        </article>
+
+        <aside class="col-sm-4 mt-4">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            DANH MỤC MÔN HỌC
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div ng-repeat="sub in list_subject" class="row">
+                                <li ng-click="checkLogin(sub.Id)" class="list-group-item fs-8"><img ng-src="./images/logos/{{sub.Logo}}" alt="...">{{sub.Name}}</li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</section>
